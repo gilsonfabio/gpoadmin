@@ -5,10 +5,12 @@ import { useState } from "react";
 import imgControl from '../../public/control.png';
 import imgLogo from '../../public/logo.png';
 import imgChart from '../../public/Chart_fill.png';
+import Link from "next/link";
+
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
   const Menus = [
-    { title: "Dashboard", src: "../../public/Chart_fill.png" },
+    { title: "Candidatos", src: "../../public/Chart_fill.png" },
     { title: "Inbox", src: "../../public/Chat.png" },
     { title: "Accounts", src: "../../public/User.png", gap: true },
     { title: "Schedule ", src: "../../public/Calendar.png" },
@@ -31,18 +33,14 @@ const Sidebar = () => {
         </div>
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
-            <li
-              key={index}
-              className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
-              ${Menu.gap ? "mt-9" : "mt-2"} ${
-                index === 0 && "bg-light-white"
-              } `}
-            >
-              <Image src={imgChart} alt="" />
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
-                {Menu.title}
-              </span>
-            </li>
+            <Link key={index} href={Menu.title} passHref >
+              <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 ${Menu.gap ? "mt-9" : "mt-2"} ${index === 0 && "bg-light-white"} `}>
+                <Image src={imgChart} alt="" />
+                <span className={`${!open && "hidden"} origin-left duration-200`}>
+                  {Menu.title}
+                </span>
+              </li>
+            </Link>
           ))}
         </ul>
       </div>      
